@@ -12,16 +12,22 @@ class EmailNotificationService {
     }
 
     init() {
-        // Load EmailJS library
+        // Load EmailJS library with CORS support from CDN
         const script = document.createElement('script');
         script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/index.min.js';
+        script.crossOrigin = 'anonymous';
+        script.integrity = 'sha384-2VF/yozMrcMwXrzsDmb12B7xnJJHhKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK';
         script.onload = () => {
-            emailjs.init(this.userID);
-            this.initialized = true;
-            console.log('EmailJS initialized');
+            if (window.emailjs) {
+                emailjs.init(this.userID);
+                this.initialized = true;
+                console.log('✅ EmailJS initialized successfully');
+            }
         };
         script.onerror = () => {
-            console.warn('Failed to load EmailJS library');
+            console.warn('Failed to load EmailJS library - will retry');
+            // Retry loading
+            setTimeout(() => this.init(), 2000);
         };
         document.head.appendChild(script);
     }
