@@ -1,12 +1,12 @@
 // Service Worker for PWA functionality
 const CACHE_NAME = 'classeology-v1';
 const urlsToCache = [
-    '/',
-    '/app/index.html',
-    '/app/app.js',
-    '/app/style.css',
-    '/firebase/firebase-config.js',
-    '/manifest.json'
+    '/organizer-bot/',
+    '/organizer-bot/index.html',
+    '/organizer-bot/app/app.js',
+    '/organizer-bot/app/style.css',
+    '/organizer-bot/firebase/firebase-config.js',
+    '/organizer-bot/manifest.json'
 ];
 
 // Install event - cache files
@@ -69,7 +69,7 @@ self.addEventListener('fetch', event => {
             })
             .catch(() => {
                 // Return offline page if available
-                return caches.match('/app/index.html');
+                return caches.match('/organizer-bot/index.html');
             })
     );
 });
