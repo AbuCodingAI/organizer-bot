@@ -113,7 +113,7 @@ class IndividualOrganizer {
 
                     <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid #e5e5ea;">
                         <p style="text-align: center; color: #666; font-size: 14px;">
-                            <a href="../app/index.html" style="color: #007aff; text-decoration: none;">← Back to School Mode</a>
+                            <a href="index.html" style="color: #007aff; text-decoration: none;">← Back to School Mode</a>
                         </p>
                     </div>
                 </div>

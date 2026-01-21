@@ -231,7 +231,7 @@ class SchoolManagementSystem {
                         <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid #e5e5ea;">
                             <p style="text-align: center; color: #666; font-size: 14px;">
                                 Not affiliated with a school?<br>
-                                <a href="../individual/individual.html" style="color: #007aff; text-decoration: none; font-weight: 600;">Try Individual Mode →</a>
+                                <a href="individual/individual.html" style="color: #007aff; text-decoration: none; font-weight: 600;">Try Individual Mode →</a>
                             </p>
                         </div>
                     </div>

@@ -4,15 +4,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirecting...</title>
-    <script>
-        // Redirect to app
-        window.location.href = '/app/index.html';
-    </script>
+    <meta name="theme-color" content="#007aff">
+    <meta name="description"
+        content="Comprehensive school management system for students, teachers, and administrators">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏫</text></svg>">
+    <link rel="apple-touch-icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏫</text></svg>">
+    <title>School Management System</title>
+    <link rel="stylesheet" href="app/style.css">
+    <!-- Firebase SDK v8 (Compatible) -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 </head>
 
 <body>
-    <p>Redirecting to app...</p>
+    <div id="app"></div>
+    <script src="firebase/firebase-config.js"></script>
+    <script src="app/email-service.js"></script>
+    <script src="app/traffic-analytics.js"></script>
+    <script src="app/transcription-service.js"></script>
+    <script src="app/app.js"></script>
+    <script>
+        // Register Service Worker for PWA
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw/sw.js').then(reg => {
+                console.log('Service Worker registered successfully', reg);
+            }).catch(err => {
+                console.log('Service Worker registration failed:', err);
+            });
+        }
+    </script>
 </body>
 
 </html>
