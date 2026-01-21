@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benchmark Tests - Classeology</title>
+    <link rel="stylesheet" href="benchmark-tests.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>📚 Benchmark Tests</h1>
+            <p>Test your knowledge across all subjects and grades</p>
+        </header>
+
+        <div class="grade-selector">
+            <h2>Select Grade Level</h2>
+            <div class="grade-buttons">
+                <button class="grade-btn" onclick="app.selectGrade('K')">Kindergarten</button>
+                <button class="grade-btn" onclick="app.selectGrade('1')">1st Grade</button>
+                <button class="grade-btn" onclick="app.selectGrade('2')">2nd Grade</button>
+                <button class="grade-btn" onclick="app.selectGrade('3')">3rd Grade</button>
+                <button class="grade-btn" onclick="app.selectGrade('4')">4th Grade</button>
+                <button class="grade-btn" onclick="app.selectGrade('5')">5th Grade</button>
+                <button class="grade-btn" onclick="app.selectGrade('6')">6th Grade</button>
+                <button class="grade-btn" onclick="app.selectGrade('7')">7th Grade</button>
+                <button class="grade-btn" onclick="app.selectGrade('8')">8th Grade</button>
+                <button class="grade-btn" onclick="app.selectGrade('9')">9th Grade</button>
+                <button class="grade-btn" onclick="app.selectGrade('10')">10th Grade</button>
+                <button class="grade-btn" onclick="app.selectGrade('11')">11th Grade</button>
+                <button class="grade-btn" onclick="app.selectGrade('12')">12th Grade</button>
+                <button class="grade-btn" onclick="app.selectGrade('C')">College</button>
+            </div>
+        </div>
+
+        <div id="subjects-container" class="subjects-container" style="display: none;">
+            <h2>Select Subject</h2>
+            <div id="subjects-grid" class="subjects-grid"></div>
+        </div>
+
+        <div id="test-container" class="test-container" style="display: none;">
+            <div class="test-header">
+                <h2 id="test-title"></h2>
+                <div class="test-info">
+                    <span id="question-counter"></span>
+                    <span id="timer"></span>
+                </div>
+            </div>
+
+            <div class="progress-bar">
+                <div id="progress-fill" class="progress-fill"></div>
+            </div>
+
+            <div id="question-container" class="question-container">
+                <h3 id="question-text"></h3>
+                <div id="options-container" class="options-container"></div>
+            </div>
+
+            <div class="test-controls">
+                <button onclick="app.previousQuestion()" class="btn-secondary">← Previous</button>
+                <button id="next-btn" onclick="app.nextQuestion()" class="btn-primary">Next →</button>
+                <button id="submit-btn" onclick="app.submitTest()" class="btn-success" style="display: none;">Submit
+                    Test</button>
+            </div>
+        </div>
+
+        <div id="results-container" class="results-container" style="display: none;">
+            <h2>Test Results</h2>
+            <div class="results-summary">
+                <div class="result-card">
+                    <h3>Your Score</h3>
+                    <p id="final-score" class="score-display"></p>
+                </div>
+                <div class="result-card">
+                    <h3>Correct Answers</h3>
+                    <p id="correct-count"></p>
+                </div>
+                <div class="result-card">
+                    <h3>Study Coins Earned</h3>
+                    <p id="coins-earned"></p>
+                </div>
+            </div>
+
+            <div id="detailed-results" class="detailed-results"></div>
+
+            <div class="results-actions">
+                <button onclick="app.retakeTest()" class="btn-primary">Retake Test</button>
+                <button onclick="app.backToGrades()" class="btn-secondary">Back to Grades</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="benchmark-questions.js"></script>
+    <script src="benchmark-questions-advanced.js"></script>
+    <script src="benchmark-tests.js"></script>
+</body>
+
+</html>

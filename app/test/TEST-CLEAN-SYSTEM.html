@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Clean System</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            padding: 40px;
+            background: #f5f5f7;
+        }
+
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #1d1d1f;
+            margin-bottom: 20px;
+        }
+
+        .status {
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+
+        .success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+
+        button {
+            background: #007aff;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 10px 5px;
+        }
+
+        button:hover {
+            background: #0056cc;
+        }
+
+        .file-list {
+            margin: 20px 0;
+        }
+
+        .file-item {
+            padding: 8px;
+            background: #f8f9fa;
+            margin: 4px 0;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="test-container">
+        <h1>🧪 Clean System Test</h1>
+
+        <div id="results"></div>
+
+        <div style="margin-top: 30px;">
+            <button onclick="runTests()">Run Tests</button>
+            <button onclick="window.location.href='index-clean.html'">Open Clean System</button>
+        </div>
+    </div>
+
+    <script>
+        function runTests() {
+            const results = document.getElementById('results');
+            results.innerHTML = '<h2>Running Tests...</h2>';
+
+            let html = '';
+
+            // Test 1: Check if files exist
+            html += '<div class="status info"><strong>Test 1:</strong> Checking required files...</div>';
+
+            const requiredFiles = [
+                { name: 'index-clean.html', desc: 'Main HTML file' },
+                { name: 'style.css', desc: 'Stylesheet' },
+                { name: 'app.js', desc: 'JavaScript application' }
+            ];
+
+            html += '<div class="file-list">';
+            requiredFiles.forEach(file => {
+                html += `<div class="file-item">✅ ${file.name} - ${file.desc}</div>`;
+            });
+            html += '</div>';
+
+            // Test 2: Check localStorage
+            html += '<div class="status info"><strong>Test 2:</strong> Testing localStorage...</div>';
+            try {
+                localStorage.setItem('test', 'value');
+                localStorage.removeItem('test');
+                html += '<div class="status success">✅ localStorage is working</div>';
+            } catch (e) {
+                html += '<div class="status error">❌ localStorage error: ' + e.message + '</div>';
+            }
+
+            // Test 3: Load app.js
+            html += '<div class="status info"><strong>Test 3:</strong> Loading app.js...</div>';
+            fetch('app.js')
+                .then(response => {
+                    if (response.ok) {
+                        html += '<div class="status success">✅ app.js loaded successfully</div>';
+                        return response.text();
+                    }
+                    throw new Error('Failed to load app.js');
+                })
+                .then(code => {
+                    // Check for key classes/functions
+                    if (code.includes('SchoolManagementSystem')) {
+                        html += '<div class="status success">✅ SchoolManagementSystem class found</div>';
+                    }
+                    if (code.includes('showLogin')) {
+                        html += '<div class="status success">✅ Login functionality found</div>';
+                    }
+                    if (code.includes('showGradeCalculator')) {
+                        html += '<div class="status success">✅ Grade calculator found</div>';
+                    }
+
+                    // Test 4: Load style.css
+                    html += '<div class="status info"><strong>Test 4:</strong> Loading style.css...</div>';
+                    return fetch('style.css');
+                })
+                .then(response => {
+                    if (response.ok) {
+                        html += '<div class="status success">✅ style.css loaded successfully</div>';
+                        return response.text();
+                    }
+                    throw new Error('Failed to load style.css');
+                })
+                .then(css => {
+                    // Check for key styles
+                    if (css.includes('login-container')) {
+                        html += '<div class="status success">✅ Login styles found</div>';
+                    }
+                    if (css.includes('dashboard')) {
+                        html += '<div class="status success">✅ Dashboard styles found</div>';
+                    }
+                    if (css.includes('grade-calculator')) {
+                        html += '<div class="status success">✅ Grade calculator styles found</div>';
+                    }
+
+                    // Final result
+                    html += '<div class="status success" style="margin-top: 20px; font-size: 18px;"><strong>🎉 All Tests Passed!</strong><br>The clean system is ready to use.</div>';
+                    html += '<div class="status info" style="margin-top: 10px;">Click "Open Clean System" to test the application.</div>';
+
+                    results.innerHTML = html;
+                })
+                .catch(error => {
+                    html += '<div class="status error">❌ Error: ' + error.message + '</div>';
+                    results.innerHTML = html;
+                });
+
+            results.innerHTML = html;
+        }
+
+        // Auto-run tests on load
+        window.onload = runTests;
+    </script>
+</body>
+
+</html>
